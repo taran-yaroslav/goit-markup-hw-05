@@ -10,7 +10,87 @@
 	--logo-part-color: #4d5ae5;
 	--footer-logo-part: #F4F4FD;
 	--footer-social-hover: #31D0AA;
-    --custumer-logo-color: #8e8f99;
+	--custumer-logo-color: #8e8f99;
+	--modal-bg-color: #FCFCFC;
+	--modal-btn-color: #000000;
+  
+	--animation-function: cubic-bezier(0.4, 0, 0.2, 1);
+	--animation-duration: 250ms;
+  }
+  /* Modal */
+
+.backdrop {
+	transition: opacity 250ms var(--animation-duration);
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(46, 47, 66, 0.4);
+  
+	opacity: 1;
+  }
+  
+  .backdrop.is-hidden {
+	opacity: 0.1;
+	pointer-events: none;
+	/* visibility: ; */
+  }
+  
+  .backdrop.is-hidden .modal {
+	transform: translate(-50%, -50%) rotate(180deg) scale(1.8, 1.8);
+	opacity: 0;
+  }
+  
+  .modal {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) rotate(0) scale(1, 1);
+	transition: transform 400ms var(--animation-function),
+	box-shadow var(--animation-duration) var(--animation-function),
+	opacity 400ms var(--animation-function);
+	opacity: 1;
+  
+	width: 408px;
+	height: 576px;
+	background-color: var(--modal-bg-color);
+	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 2px 1px rgba(0, 0, 0, 0.2);
+	border-radius: 4px;
+  }
+  
+  .modal-close {
+	position: absolute;
+	transition: background-color var(--animation-duration) var(--animation-function);
+  
+	display: flex;
+	top: 24px;
+	right: 24px;
+	align-items: center;
+	justify-content: center;
+	
+	cursor: pointer;
+	width: 24px;
+	height: 24px;
+	border-radius: 50%;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	background-color: var(--header-background-color);
+  }
+  
+  .btn-modal {
+	transition: fill var(--animation-duration) var(--animation-function);
+	fill: currentColor;
+  }
+  
+  .modal-close:hover,
+  .modal-close:focus {
+	border-color: var(--accent-color);
+	background-color: var(--accent-color);
+  }
+  
+  .modal-close:hover .btn-modal,
+  .modal-close:focus .btn-modal {
+	fill: var(--hero-text-color);
   }
   
   /* body */
@@ -66,8 +146,50 @@
   .logo-web {
 	color: var(--logo-part-color);
   }
+  .site-nav .link.current {
+	position: relative;
+	color: var(--accent-color);
+  }
+  
+  .site-nav .link::after,
+  .site-nav .link::after {
+	content:'';
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	display: block;
+	width: 100%;
+	height: 4px;
+	background-color: var(--accent-color);
+	border-radius: 2px;
+  
+	transform: scale(0, 0);
+	transition: transform var(--animation-duration) var(--animation-function) 100ms;
+  }
+  
+  .site-nav .link:hover::after,
+  .site-nav .link:focus::after {
+	transform: scale(1, 1);
+  }
+  
+  .site-nav .link.current::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	display: block;
+	width: 100%;
+	height: 4px;
+	background-color: var(--accent-color);
+	border-radius: 2px;
+	
+	transform: scale(1);
+  }
   
   .site-nav .link {
+	position: relative;
+  transition: color var(--animation-duration) var(--animation-function);
+
 	display: block;
 	padding-top: 24px;
 	padding-bottom: 24px;
@@ -91,11 +213,10 @@
   .site-nav .chapter:not(:last-child) {
 	margin-right: 40px;
   }
-  /* .site-nav .chapter+.chapter {
-	margin-left: 40px;
-  } */
+  
   
   .ping {
+	transition: color var(--animation-duration) var(--animation-function);
 	color: var(--main-text-color);
   
 	font-style: normal;
@@ -179,6 +300,8 @@
   }
   
   .push {
+	transition: background-color var(--animation-duration) var(--animation-function);
+
 	border-radius: 4px;
 	margin: 0;
 	padding: 16px 32px;
@@ -345,6 +468,8 @@
   }
   
   .btn-social {
+	transition: background-color var(--animation-duration) var(--animation-function);
+
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -378,7 +503,6 @@
   }
   
   .client:not(:last-child) {
-	/* margin: 0 24px 0 0; */
 	margin-right: 24px;
   }
   .client {
@@ -386,6 +510,8 @@
     height: 88px;
   }
   .client-page {
+	transition: border var(--animation-duration) var(--animation-function);
+
 	display: flex;
     justify-content: center;
     align-items: center;
@@ -401,12 +527,19 @@
   }
   
   .client-icon {
+	transition: fill var(--animation-duration) var(--animation-function);
+
 	fill: currentColor;  }
   
   .client-page:hover,
   .client-page:focus {
 	border-color: var(--accent-color);
     color: var(--accent-color);  }
+
+	.client-page:hover .client-icon,
+.client-page:focus .client-icon {
+  fill: var(--accent-color);
+}
   
   
   .clients-list {
@@ -466,6 +599,8 @@
   }
   
   .foot-link-back {
+	transition: background-color var(--animation-duration) var(--animation-function);
+
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -499,6 +634,10 @@
   /* Portfolio's buttons */
   
   .btn-push {
+	transition: background-color var(--animation-duration) var(--animation-function),
+	color var(--animation-duration) var(--animation-function),
+	box-shadow var(--animation-duration) var(--animation-function);
+  
 	border-radius: 4px;
 	padding: 12px 24px;
 	min-width: 69px;
@@ -523,12 +662,8 @@
 	background-color: var(--accent-color);
 	color: var(--hero-text-color);
 	box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 2px 1px rgba(0, 0, 0, 0.08), 0px 2px 2px rgba(0, 0, 0, 0.12);
-	
-
 
   }
-
-  
   .btn-list.list {
 	display: flex;
 	justify-content: center;
@@ -577,6 +712,7 @@
   /* Portfolio's galary */
   
   .galary {
+	transition: box-shadow var(--animation-duration) var(--animation-function);
 	display: block;
 	color: var(--main-text-color);
 	text-decoration-line: none;
@@ -585,6 +721,36 @@
 .chapter .galary:focus {
   box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08), 0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
 }
+.img-product {
+	position: relative;
+	overflow: hidden;
+  }
+  
+  .card-text {
+	margin-top: 0;
+	margin-bottom: auto;
+  }
+  
+  .chapter .galary:hover .card-product,
+  .chapter .galary:focus .card-product {
+	transform: translateY(0);
+  }
+  
+  .card-product {
+	position: absolute;
+	top: 0;
+	left: 0;
+	transform: translateY(100%);
+	transition: transform var(--animation-duration) var(--animation-function);
+  
+	width: 360px;
+	height: 300px;
+	padding: 40px 32px;
+  
+	background-color: rgba(77, 90, 229, 0.8);
+	color: var(--footer-logo-part); 
+  }
+  
   /* Visually hidden */
   
   .visually-hidden {
