@@ -128,7 +128,11 @@
   
   .page-header {
 	border-bottom: 1px solid var(--header-background-color);
-  }
+	
+		
+	box-shadow: 0px 2px 1px rgba(46, 47, 66, 0.08), 0px 1px 1px rgba(46, 47, 66, 0.16), 0px 1px 6px rgba(46, 47, 66, 0.08);
+	  }
+  
   
   .logo {
 	margin-right: 76px;
@@ -246,6 +250,8 @@
 	display: block;
 	padding-top: 32px;
     padding-bottom: 32px;
+	padding: 24px 0;
+
   }
   
   .head-nav {
@@ -392,7 +398,7 @@
   } */
   
   .advantages .chapter {
-	width: calc((100%-24px*3)/4);
+	width: calc((100% - 72px) / 4);
 	
   }
   
@@ -510,8 +516,7 @@
     height: 88px;
   }
   .client-page {
-	transition: border var(--animation-duration) var(--animation-function);
-
+	transition: border-color var(--animation-duration) var(--animation-function);
 	display: flex;
     justify-content: center;
     align-items: center;
@@ -534,7 +539,7 @@
   .client-page:hover,
   .client-page:focus {
 	border-color: var(--accent-color);
-    color: var(--accent-color);  }
+     }
 
 	.client-page:hover .client-icon,
 .client-page:focus .client-icon {
@@ -635,8 +640,8 @@
   
   .btn-push {
 	transition: background-color var(--animation-duration) var(--animation-function),
-	color var(--animation-duration) var(--animation-function),
-	box-shadow var(--animation-duration) var(--animation-function);
+    color var(--animation-duration) var(--animation-function),
+    box-shadow var(--animation-duration) var(--animation-function), border-color var(--animation-duration) var(--animation-function);
   
 	border-radius: 4px;
 	padding: 12px 24px;
@@ -743,7 +748,7 @@
 	transform: translateY(100%);
 	transition: transform var(--animation-duration) var(--animation-function);
   
-	width: 360px;
+	
 	height: 300px;
 	padding: 40px 32px;
   
